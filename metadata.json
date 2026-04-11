@@ -1,0 +1,7 @@
+{
+  "name": "Remix: Construshop App",
+  "description": "Aplicativo de loja de materiais de construção e ferramentas.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
