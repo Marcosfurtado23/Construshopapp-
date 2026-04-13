@@ -794,13 +794,13 @@ function AppContent() {
 
   return (
     <div 
-      className="max-w-md mx-auto bg-[#F8FAFC] dark:bg-gray-900 min-h-screen relative pb-24 font-sans shadow-2xl overflow-hidden transition-colors duration-300"
+      className="max-w-md md:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto bg-[#F8FAFC] dark:bg-gray-900 min-h-screen relative pb-24 font-sans shadow-2xl overflow-hidden transition-colors duration-300"
     >
       
       {activeTab === 'home' && (
         <>
           {/* Fixed Top Section */}
-          <div className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm pb-3 max-w-md mx-auto">
+          <div className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm pb-3 max-w-md md:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto">
             {/* Header */}
             <header className="px-6 pt-4 pb-4 flex justify-between items-center">
               <div className="flex items-center gap-3">
@@ -955,7 +955,7 @@ function AppContent() {
       <div className="mb-8 mt-2">
         <div className="flex gap-4 overflow-x-auto pt-10 pb-4 px-6 snap-x snap-mandatory hide-scrollbar">
           {banners.map((banner) => (
-            <div key={banner.id} className="relative shrink-0 w-full snap-center">
+            <div key={banner.id} className="relative shrink-0 w-full md:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] snap-center">
               <div className={`bg-gradient-to-r ${banner.bgGradient} rounded-3xl p-6 shadow-sm relative z-10`}>
                 <div className="relative z-20 w-[60%]">
                   <h2 className="text-xl font-bold text-gray-900 mb-2 leading-tight">
@@ -996,7 +996,7 @@ function AppContent() {
             Ver Tudo
           </button>
         </div>
-        <div className="grid grid-cols-4 gap-y-6 gap-x-4">
+        <div className="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-y-6 gap-x-4">
           {categories.map((cat, idx) => (
             <button key={idx} className="flex flex-col items-center gap-2 group">
               <div className="w-16 h-16 bg-white dark:bg-gray-800 rounded-2xl shadow-sm flex items-center justify-center group-hover:shadow-md group-hover:scale-105 transition-all duration-200 p-3">
@@ -1027,7 +1027,7 @@ function AppContent() {
         <div className="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 snap-x hide-scrollbar">
           {sortedProducts.length > 0 ? (
             sortedProducts.map((product) => (
-              <div key={product.id} className="min-w-[200px] bg-white dark:bg-gray-800 rounded-3xl p-4 shadow-sm snap-start flex flex-col transition-colors overflow-hidden relative">
+              <div key={product.id} className="min-w-[200px] md:min-w-[250px] bg-white dark:bg-gray-800 rounded-3xl p-4 shadow-sm snap-start flex flex-col transition-colors overflow-hidden relative">
                 <div className="relative mb-3 bg-gray-50 dark:bg-gray-700 rounded-2xl aspect-square flex items-center justify-center overflow-hidden">
                   <span className={`absolute top-2 right-2 ${product.tagColor} text-white text-[10px] font-bold px-2 py-1 rounded-md z-10`}>
                     {product.tag}
@@ -1267,7 +1267,7 @@ function AppContent() {
       {/* Auth Modal */}
       {showAuthModal && (
         <div className="fixed inset-0 z-[80] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-fade-in">
-          <div className="bg-white dark:bg-gray-900 w-full max-w-md rounded-3xl p-6 shadow-2xl animate-modal-pop relative">
+          <div className="bg-white dark:bg-gray-900 w-full max-w-md md:max-w-lg rounded-3xl p-6 shadow-2xl animate-modal-pop relative">
             <button 
               onClick={() => setShowAuthModal(false)}
               className="absolute top-4 right-4 p-2 bg-gray-100 dark:bg-gray-800 rounded-full text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
@@ -1341,7 +1341,7 @@ function AppContent() {
       {/* Product Edit Modal */}
       {showProductModal && editingProduct && (
         <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-          <div className="bg-white dark:bg-gray-900 w-full max-w-md rounded-3xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+          <div className="bg-white dark:bg-gray-900 w-full max-w-md md:max-w-2xl rounded-3xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">{editingProduct.id ? 'Editar Produto' : 'Novo Produto'}</h3>
               <button onClick={() => setShowProductModal(false)} className="p-2 bg-gray-100 dark:bg-gray-800 rounded-full">
@@ -1400,7 +1400,7 @@ function AppContent() {
       )}
 
       {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 px-6 py-4 flex justify-between items-center z-50 rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)] transition-colors">
+      <nav className="fixed bottom-0 left-0 right-0 max-w-md md:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-100 dark:border-gray-800 px-6 py-4 flex justify-between items-center z-50 rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)] transition-colors">
         <button 
           onClick={() => setActiveTab('home')}
           className={`flex flex-col items-center gap-1 ${activeTab === 'home' ? 'text-[#2A85FF]' : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300'}`}
@@ -1470,7 +1470,7 @@ function AppContent() {
       {/* Checkout Modal */}
       {showCheckoutModal && (
         <div className="fixed inset-0 z-[70] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-fade-in">
-          <div className="bg-white dark:bg-gray-900 w-full max-w-md rounded-3xl p-6 shadow-2xl animate-modal-pop max-h-[90vh] overflow-y-auto">
+          <div className="bg-white dark:bg-gray-900 w-full max-w-md md:max-w-lg rounded-3xl p-6 shadow-2xl animate-modal-pop max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">Finalizar Compra</h3>
               <button onClick={() => setShowCheckoutModal(false)} className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 bg-gray-100 dark:bg-gray-800 rounded-full transition-colors">
