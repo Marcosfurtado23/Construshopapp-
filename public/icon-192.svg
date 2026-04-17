@@ -1,4 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
-    <rect width="192" height="192" fill="#1e3a8a"/>
-    <text x="96" y="96" fill="white" font-size="72" font-family="sans-serif" font-weight="bold" text-anchor="middle" dominant-baseline="central">CS</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Fundo amarelo -->
+  <rect width="512" height="512" fill="#FEF08A"/>
+  
+  <!-- Chapéu de Arquiteto Amarelo com bordas para dar contraste -->
+  <g transform="translate(64, 150)">
+    <!-- Base do capacete -->
+    <path d="M192,20 C80,20 40,140 32,224 L16,224 C-4,224 -4,260 16,260 L368,260 C388,260 388,224 368,224 L352,224 C344,140 304,20 192,20 Z" fill="#FACC15" stroke="#CA8A04" stroke-width="16" stroke-linejoin="round"/>
+    
+    <!-- Detalhe/Relevo superior do chapéu -->
+    <path d="M192,20 C210,20 220,40 220,80 L220,150 C220,170 164,170 164,150 L164,80 C164,40 174,20 192,20 Z" fill="#FEF08A" stroke="#CA8A04" stroke-width="12" stroke-linejoin="round"/>
+    
+    <!-- Linha da aba do chapéu -->
+    <path d="M20,224 L364,224" stroke="#CA8A04" stroke-width="16" stroke-linecap="round"/>
+    
+    <!-- Sombra interna sutil na aba -->
+    <path d="M28,260 C80,280 304,280 356,260" fill="none" stroke="#A16207" stroke-width="8" stroke-linecap="round" opacity="0.5"/>
+  </g>
 </svg>
