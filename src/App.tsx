@@ -38,7 +38,8 @@ import {
   RefreshCw,
   Tag,
   Mail,
-  Phone
+  Phone,
+  Download
 } from 'lucide-react';
 import { auth, db } from './firebase';
 import { LoadingScreen } from './components/LoadingScreen';
@@ -129,6 +130,47 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 function AppContent() {
   const [appLoaded, setAppLoaded] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
+
+  // PWA Install State
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [isInstallable, setIsInstallable] = useState(false);
+
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: any) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      setInstallPrompt(e);
+      setIsInstallable(true);
+    };
+
+    const handleAppInstalled = () => {
+      setInstallPrompt(null);
+      setIsInstallable(false);
+      console.log('PWA was installed');
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('appinstalled', handleAppInstalled);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', handleAppInstalled);
+    };
+  }, []);
+
+  const handleInstallPWA = async () => {
+    if (!installPrompt) return;
+    try {
+      await installPrompt.prompt();
+      const { outcome } = await installPrompt.userChoice;
+      if (outcome === 'accepted') {
+        setInstallPrompt(null);
+        setIsInstallable(false);
+      }
+    } catch (err) {
+      console.error('Error with PWA install prompt', err);
+    }
+  };
 
   const [cart, setCart] = useState<any[]>(() => {
     if (typeof window !== 'undefined') {
@@ -801,6 +843,22 @@ function AppContent() {
         <>
           {/* Fixed Top Section */}
           <div className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm pb-3 max-w-md md:max-w-3xl lg:max-w-5xl xl:max-w-6xl mx-auto">
+            {/* Install PWA Banner */}
+            {isInstallable && (
+              <div className="bg-blue-600 text-white px-4 py-2 flex items-center justify-between shadow-md">
+                <div className="flex items-center gap-2">
+                  <Download className="w-5 h-5" />
+                  <span className="text-sm font-semibold">Instalar aplicativo oficial</span>
+                </div>
+                <button 
+                  onClick={handleInstallPWA}
+                  className="bg-white text-blue-600 px-3 py-1 rounded-full text-xs font-bold hover:bg-gray-100 transition-colors"
+                >
+                  Instalar
+                </button>
+              </div>
+            )}
+            
             {/* Header */}
             <header className="px-6 pt-4 pb-4 flex justify-between items-center">
               <div className="flex items-center gap-3">
